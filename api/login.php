@@ -33,7 +33,7 @@
                                 "id" => $row["id"],
                                 "firstname" => $row["firstname"],
                                 "lastname" => $row["lastname"],
-                                "photo" => $image_path
+                                "photo" => "$image_path"
                                 
                             )
                         )

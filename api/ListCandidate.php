@@ -19,7 +19,7 @@ $sql = "SELECT * FROM candidates";
             $result = [];
             while($row = mysqli_fetch_array($query)) {
                 $filename = $row['photo'];
-                $dir = '/votesystem/images/';
+                $dir = '/images/';
                 $image_path = $dir.$filename;
                 array_push($result, array(
                                     "id" => $row["id"],

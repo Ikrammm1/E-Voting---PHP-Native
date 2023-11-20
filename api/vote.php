@@ -16,14 +16,14 @@
             if ($query_input) {
                echo json_encode(
                     array(
-                        'response' => true,
+                        'status' => true,
                         'message' => 'Success',
                     )
                 );
             }else{
                 echo json_encode(
                     array(
-                        'response' => false,
+                        'status' => false,
                         'message' => 'Kesalahan',
                     )
                 );
@@ -34,7 +34,7 @@
 		else{
 			    echo json_encode(
                     array(
-                        'response' => false,
+                        'status' => false,
                         'message' => 'You can only choose 1 candidate',
                     )
                 );
