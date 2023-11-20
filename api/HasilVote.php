@@ -5,6 +5,8 @@ include '../includes/conn.php';
 $sql = "SELECT votes.id, 
             votes.candidate_id, 
             votes.position_id,
+            candidates.id as id_candidate,
+            candidates.position_id as id_position,
             candidates.firstname, 
             candidates.lastname,
             candidates.photo, 
@@ -20,7 +22,7 @@ $sql = "SELECT votes.id,
             echo json_encode(
                 array(
                     'response' => false,
-                    'message' => 'No Resukt',
+                    'message' => 'No Result',
                     'payload' => null
                 )
             );
@@ -33,8 +35,8 @@ $sql = "SELECT votes.id,
                 $image_path = $dir.$filename;
                 array_push($result, array(
                                     "id" => $row["id"],
-                                    "candidate_id" => $row["candidate_id"],
-                                    "position_id" => $row["position_id"],
+                                    "candidate_id" => $row["id_candidate"],
+                                    "position_id" => $row["id_position"],
                                     "firstname" => $row["firstname"],
                                     "lastname" => $row["lastname"],
                                     "photo" => $image_path,
@@ -43,11 +45,8 @@ $sql = "SELECT votes.id,
                                      )
                             );
             }
-            echo json_encode($result);
-            
+            echo json_encode(array($result));
 
-                    
-			
 		}
 
 // mengatur tampilan json
