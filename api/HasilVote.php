@@ -12,7 +12,7 @@ $sql = "SELECT votes.id,
             COUNT(votes.voters_id) AS jml_vote 
         FROM `votes`
         RIGHT JOIN candidates ON votes.candidate_id = candidates.id
-        GROUP BY candidate_id";
+        GROUP BY candidates.id";
 
 		$query = $conn->query($sql);
 
@@ -29,7 +29,7 @@ $sql = "SELECT votes.id,
             $result = [];
             while($row = mysqli_fetch_array($query)) {
                 $filename = $row['photo'];
-                $dir = '/votesystem/images/';
+                $dir = '/images/';
                 $image_path = $dir.$filename;
                 array_push($result, array(
                                     "id" => $row["id"],
@@ -43,7 +43,7 @@ $sql = "SELECT votes.id,
                                      )
                             );
             }
-            echo json_encode(array('result' =>$result));
+            echo json_encode($result);
             
 
                     
