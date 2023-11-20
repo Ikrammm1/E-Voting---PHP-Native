@@ -21,7 +21,7 @@
 		else{
 			$row = $query->fetch_assoc();
             $filename = $row['photo'];
-            $dir = '/votesystem/images/';
+            $dir = '/images/';
             $image_path = $dir.$filename;
 
 			if(password_verify($password, $row['password'])){
