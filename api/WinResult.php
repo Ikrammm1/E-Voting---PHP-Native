@@ -2,19 +2,29 @@
 
 include '../includes/conn.php';
 
-$sql = "SELECT votes.id, 
-            votes.candidate_id, 
-            votes.position_id,
-            candidates.id as id_candidate,
-            candidates.position_id as id_position,
-            candidates.firstname, 
-            candidates.lastname,
-            candidates.photo, 
-            candidates.platform, 
-            COUNT(votes.voters_id) AS jml_vote 
-        FROM `votes`
-        RIGHT JOIN candidates ON votes.candidate_id = candidates.id
-        GROUP BY candidates.id";
+$sql = "SELECT subquery.id,
+                subquery.position_id,
+                subquery.id_candidate,
+                subquery.firstname,
+                subquery.lastname,
+                subquery.photo,
+                subquery.platform,
+                subquery.jml_vote
+        FROM (
+            SELECT 	votes.id,
+                    votes.position_id,
+                    candidates.id AS id_candidate,
+                    candidates.firstname,
+                    candidates.lastname,
+                    candidates.photo,
+                    candidates.platform,
+                    COUNT(votes.voters_id) AS jml_vote
+            FROM votes
+            RIGHT JOIN candidates ON votes.candidate_id = candidates.id
+            GROUP BY candidates.id
+        ) AS subquery
+        ORDER BY subquery.jml_vote DESC
+        LIMIT 1";
 
 		$query = $conn->query($sql);
 
