@@ -15,7 +15,14 @@ $sql = "SELECT * FROM candidates";
             );
 		}
 		else{
-			// $row = $query->fetch_assoc();
+			$voters_id = $_POST['voters_id'];
+            $sqlcek = "SELECT * FROM votes WHERE voters_id = '$voters_id'";
+            $querycek = $conn->query($sqlcek);
+            if($querycek->num_rows > 0){
+                $status = 'true';                          
+            }else{
+                $status = 'false'; 
+            }
             $result = [];
             while($row = mysqli_fetch_array($query)) {
                 $filename = $row['photo'];
@@ -28,6 +35,7 @@ $sql = "SELECT * FROM candidates";
                                     "lastname" => $row["lastname"],
                                     "photo" => $image_path,
                                     "platform" => $row["platform"], 
+                                    "status_vote" => $status,
                                      )
                             );
             }
