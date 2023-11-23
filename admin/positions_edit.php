@@ -5,8 +5,10 @@
 		$id = $_POST['id'];
 		$description = $_POST['description'];
 		$max_vote = $_POST['max_vote'];
+		$start_vote = $_POST['start_vote'];
+		$end_vote = $_POST['end_vote'];
 
-		$sql = "UPDATE positions SET description = '$description', max_vote = '$max_vote' WHERE id = '$id'";
+		$sql = "UPDATE positions SET description = '$description', max_vote = '$max_vote', start_vote = '$start_vote', end_vote = '$end_vote' WHERE id = '$id'";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Position updated successfully';
 		}

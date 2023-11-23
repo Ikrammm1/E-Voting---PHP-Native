@@ -3,14 +3,14 @@
 	include 'includes/conn.php';
 
 	if(isset($_POST['login'])){
-		$voter = $_POST['voter'];
+		$nim = $_POST['nim'];
 		$password = $_POST['password'];
 
-		$sql = "SELECT * FROM voters WHERE voters_id = '$voter'";
+		$sql = "SELECT * FROM voters WHERE nim = '$nim'";
 		$query = $conn->query($sql);
 
 		if($query->num_rows < 1){
-			$_SESSION['error'] = 'Cannot find voter with the ID';
+			$_SESSION['error'] = 'Cannot find nim with the ID';
 		}
 		else{
 			$row = $query->fetch_assoc();

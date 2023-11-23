@@ -3,17 +3,17 @@
 	include '../includes/conn.php';
 
         //ambil data yang dikirim dari android
-		$voter = $_POST['voter'];
+		$nim = $_POST['nim'];
 		$password = $_POST['password'];
         
-		$sql = "SELECT * FROM voters WHERE voters_id = '$voter'";
+		$sql = "SELECT * FROM voters WHERE nim = '$nim'";
 		$query = $conn->query($sql);
        
 		if($query->num_rows < 1){
             echo json_encode(
                 array(
                     'response' => false,
-                    'message' => 'Cannot find voter with the ID',
+                    'message' => 'Cannot find voter with the NIM',
                     'payload' => null
                 )
             );
@@ -31,8 +31,9 @@
                             'message' => 'Success',
                             'payload' => array(
                                 "id" => $row["id"],
-                                "firstname" => $row["firstname"],
-                                "lastname" => $row["lastname"],
+                                "nim" => $row["nim"],
+                                "fullname" => $row["fullname"],
+                                "password" => $row["password"],
                                 "photo" => "$image_path"
                                 
                             )

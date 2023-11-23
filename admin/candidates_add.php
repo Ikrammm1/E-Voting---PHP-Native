@@ -2,8 +2,8 @@
 	include 'includes/session.php';
 
 	if(isset($_POST['add'])){
-		$firstname = $_POST['firstname'];
-		$lastname = $_POST['lastname'];
+		$fullname = $_POST['fullname'];
+		$nim = $_POST['nim'];
 		$position = $_POST['position'];
 		$platform = $_POST['platform'];
 		$filename = $_FILES['photo']['name'];
@@ -11,7 +11,7 @@
 			move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);	
 		}
 
-		$sql = "INSERT INTO candidates (position_id, firstname, lastname, photo, platform) VALUES ('$position', '$firstname', '$lastname', '$filename', '$platform')";
+		$sql = "INSERT INTO candidates (position_id, fullname, nim, photo, platform) VALUES ('$position', '$fullname', '$nim', '$filename', '$platform')";
 		if($conn->query($sql)){
 			$_SESSION['success'] = 'Candidate added successfully';
 		}

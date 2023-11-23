@@ -5,8 +5,8 @@ include '../includes/conn.php';
 $sql = "SELECT
             candidates.id as id_candidate,
             candidates.position_id as id_position,
-            candidates.firstname, 
-            candidates.lastname,
+            candidates.fullname, 
+            candidates.nim,
             candidates.photo, 
             candidates.platform, 
             COUNT(votes.voters_id) AS jml_vote 
@@ -35,8 +35,8 @@ if ($query->num_rows < 1) {
             array(
                 "candidate_id" => $row["id_candidate"],
                 "position_id" => $row["id_position"],
-                "firstname" => $row["firstname"],
-                "lastname" => $row["lastname"],
+                "nim" => $row["nim"],
+                "fullname" => $row["fullname"],
                 "photo" => $image_path,
                 "platform" => $row["platform"],
                 "jml_vote" => $row["jml_vote"],

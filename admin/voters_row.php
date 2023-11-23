@@ -6,7 +6,13 @@
 		$sql = "SELECT * FROM voters WHERE id = '$id'";
 		$query = $conn->query($sql);
 		$row = $query->fetch_assoc();
+		$data = array(
+			"id" => $row["id"],
+			"nim" => $row["nim"],
+			"fullname" => $row["fullname"],
+			"photo" => $row["photo"],
+		);
 
-		echo json_encode($row);
+		echo json_encode($data);
 	}
 ?>
