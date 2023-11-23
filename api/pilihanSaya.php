@@ -6,8 +6,8 @@ $voters_id = $_POST['voters_id'];
 $sql = "SELECT
             candidates.id as id_candidate,
             candidates.position_id as id_position,
-            candidates.firstname, 
-            candidates.lastname,
+            candidates.nim, 
+            candidates.fullname,
             candidates.photo, 
             candidates.platform, 
             COUNT(votes.voters_id) AS jml_vote 
@@ -35,8 +35,8 @@ if ($query->num_rows < 1) {
     echo json_encode(array(
         "candidate_id" => $row["id_candidate"],
         "position_id" => $row["id_position"],
-        "firstname" => $row["firstname"],
-        "lastname" => $row["lastname"],
+        "nim" => $row["nim"],
+        "fullname" => $row["fullname"],
         "photo" => $image_path,
         "platform" => $row["platform"],
         "jml_vote" => $row["jml_vote"],

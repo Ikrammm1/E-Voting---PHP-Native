@@ -5,7 +5,21 @@
 		$id = $_POST['id'];
 		$filename = $_FILES['photo']['name'];
 		if(!empty($filename)){
-			move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);	
+			$sqlgambar = "SELECT photo FROM candidates WHERE id = '$id'";
+			$query = $conn->query($sqlgambar);
+			$row = $query->fetch_assoc();
+			$nama_file = "../images/$row[photo]";
+			if (file_exists($nama_file)) {
+				 if (unlink($nama_file)) {
+					move_uploaded_file($_FILES['photo']['tmp_name'], '../images/'.$filename);
+				 }else {
+					$_SESSION['error'] = $conn->error;
+				 }
+
+			}else {
+				$_SESSION['error'] = $conn->error;
+			}
+				
 		}
 		
 		$sql = "UPDATE candidates SET photo = '$filename' WHERE id = '$id'";

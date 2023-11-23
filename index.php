@@ -1,4 +1,6 @@
-<?php
+<?php header('location: admin/home.php'); ?>
+
+<!-- <?php
   	session_start();
   	if(isset($_SESSION['admin'])){
     	header('location: admin/home.php');
@@ -21,7 +23,7 @@
 
             <form action="login.php" method="POST">
                 <div class="form-group has-feedback">
-                    <input type="text" class="form-control" name="voter" placeholder="Voter's ID" required>
+                    <input type="text" class="form-control" name="nim" placeholder="NIM" required>
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
@@ -51,4 +53,4 @@
     <?php include 'includes/scripts.php' ?>
 </body>
 
-</html>
+</html> -->

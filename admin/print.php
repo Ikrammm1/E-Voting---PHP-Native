@@ -18,7 +18,7 @@
         		</tr>
         	';
 
-        	$sql = "SELECT * FROM candidates WHERE position_id = '$id' ORDER BY lastname ASC";
+        	$sql = "SELECT * FROM candidates WHERE position_id = '$id' ORDER BY nim ASC";
     		$cquery = $conn->query($sql);
     		while($crow = $cquery->fetch_assoc()){
     			$sql = "SELECT * FROM votes WHERE candidate_id = '".$crow['id']."'";
@@ -27,7 +27,7 @@
 
       			$contents .= '
       				<tr>
-      					<td>'.$crow['lastname'].", ".$crow['firstname'].'</td>
+      					<td>'.$crow['nim'].", ".$crow['fullname'].'</td>
       					<td>'.$votes.'</td>
       				</tr>
       			';
@@ -60,7 +60,7 @@
     $content = '';  
     $content .= '
       	<h2 align="center">'.$title.'</h2>
-      	<h4 align="center">Tally Result</h4>
+      	<h4 align="center">Hasil Pemilihan</h4>
       	<table border="1" cellspacing="0" cellpadding="3">  
       ';  
    	$content .= generateRow($conn);  

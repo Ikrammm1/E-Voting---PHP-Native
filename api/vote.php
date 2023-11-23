@@ -4,13 +4,12 @@
         //ambil data yang dikirim dari android
 		$voters_id = $_POST['voters_id'];
 		$candidate_id = $_POST['candidate_id'];
-		$position_id = $_POST['position_id'];
 
-		$sql = "SELECT * FROM votes WHERE voters_id = '$voters_id' and position_id = '$position_id' ";
+		$sql = "SELECT * FROM votes WHERE voters_id = '$voters_id' and candidate_id = '$candidate_id' ";
 		$query = $conn->query($sql);
     
 		if($query->num_rows < 1){
-			$sql_input = "INSERT INTO votes (voters_id, candidate_id, position_id) VALUES ('$voters_id', '$candidate_id', '$position_id')";
+			$sql_input = "INSERT INTO votes (voters_id, candidate_id) VALUES ('$voters_id', '$candidate_id')";
             $query_input = $conn->query($sql_input);
             // var_dump($sql_input);
             if ($query_input) {
