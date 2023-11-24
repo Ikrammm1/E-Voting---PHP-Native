@@ -35,12 +35,12 @@ $sql = "SELECT * FROM candidates";
                         $deadline = strtotime(date($positions['end_vote']));
                         $sekarang = strtotime(date("Y-m-d H:i:s"));
                         $awal = $mulai - $sekarang;
-                        $tetap = $deadline - $mulai;
-                        $harit = floor($tetap / (60 * 60 * 24));
-                        $jamt  = floor($tetap % (60 * 60 * 24) / (60 * 60));
-                        $menitt = floor($tetap % (60 * 60) / 60);
-                        $detikt = floor($tetap % 60);
                         $sisa = $deadline - $sekarang;
+                        $hari = floor($sisa / (60 * 60 * 24));
+                        $jam  = floor($sisa % (60 * 60 * 24) / (60 * 60));
+                        $menit = floor($sisa % (60 * 60) / 60);
+                        $detik = floor($sisa % 60);
+                        $countDown = "$hari hari $jam jam $menit menit";
                         if ($awal <= 0 && $sisa > 0){
                             $mulai_vote = true;
                         }else{
@@ -52,7 +52,7 @@ $sql = "SELECT * FROM candidates";
                 $image_path = $dir.$filename;
                 array_push($result, array(
                                     "id" => $row["id"],
-                                    "candidate_id" => $row["candidate_id"],
+                                    "position_id" => $row["position_id"],
                                     "nim" => $row["nim"],
                                     "fullname" => $row["fullname"],
                                     "photo" => $image_path,
